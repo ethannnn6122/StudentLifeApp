@@ -48,6 +48,7 @@ class App extends Component {
   render() {
     return(
       <IonApp>
+        {/* <ToDoList/> */}
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>

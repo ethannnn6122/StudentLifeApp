@@ -4,7 +4,22 @@ import './to_do.css';
 import App from '../App';
 
 
+
 class ToDoList extends Component<App> {
+  
+  constructor(props: any){
+    super(props);
+    this.state = {
+      items: []
+    };
+    this.addItem = this.addItem.bind(this);
+  }
+
+  addItem() {
+    
+
+  }
+
   render(){
     return (
       <IonPage className="body">
@@ -14,13 +29,13 @@ class ToDoList extends Component<App> {
           </IonToolbar>
         </IonHeader>
         <IonContent>
-        <form onSubmit={this.props.addItem}>
+        <form onSubmit={this.addItem}>
         <IonGrid>
            <IonRow>
             <IonCol size="auto">
               <IonItem>
               <IonLabel>Enter a Task:</IonLabel>
-              <IonInput></IonInput>
+              {/* <IonInput ref= { (a) => this.textInput = a}></IonInput> */}
               </IonItem>
             </IonCol>
             <IonCol>
