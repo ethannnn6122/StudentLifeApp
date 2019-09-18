@@ -33,22 +33,31 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { Task } from './models/task';
+import { TasksList } from './pages/Todo-Components/TasksList';
 
-class App extends Component {
+interface State {
+  newTask: Task;
+  tasks: Task[];
+}
+
+class App extends Component<{}, State> {
   state = {
-    items: [],
-    currentItems: {text: '', key: '' },
-  }
-  handleInput = () => {
-    console.log("Hello Input");
-  }
-  addItem = () => {
-    console.log("Hello Add Item");
-  }
+    newTask: {
+      id: 1,
+      name: ""
+    },
+    tasks: []
+  };
   render() {
     return(
       <IonApp>
-        {/* <ToDoList/> */}
+        <ToDoList 
+          task={this.state.newTask}
+          onAdd={this.addTask}
+          onChange={this.handleTaskChange}
+          />
+          <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} />
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
@@ -76,6 +85,35 @@ class App extends Component {
   </IonApp>
     );
   }
+
+  private addTask = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    this.setState(previousState => ({
+      newTask: {
+        id: previousState.newTask.id + 1,
+        name: ""
+      },
+      tasks: [...previousState.tasks, previousState.newTask]
+    }));
+  };
+
+  private handleTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({
+      newTask: {
+        ...this.state.newTask,
+        name: event.target.value
+      }
+    });
+  };
+
+  private deleteTask = (taskToDelete: Task) => {
+    this.setState(previousState => ({
+      tasks: [
+        ...previousState.tasks.filter(task => task.id !== taskToDelete.id)
+      ]
+    }));
+  };
 }
 
 export default App;

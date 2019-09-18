@@ -1,53 +1,47 @@
-import React, { Component } from 'react';
-import { IonHeader, IonToolbar, IonPage, IonTitle, IonContent, IonInput, IonLabel, IonButton, IonGrid, IonRow, IonCol, IonItem } from '@ionic/react';
+import React from 'react';
+import { IonHeader, IonToolbar, IonPage, IonTitle, IonContent, IonLabel, IonButton, IonGrid, IonRow, IonCol, IonItem } from '@ionic/react';
 import './to_do.css';
-import App from '../App';
+import { Task } from '../models/task';
+
+export interface FormProps {
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onAdd: (event: React.FormEvent<HTMLFormElement>) => void;
+  task: Task;
+}
 
 
-
-class ToDoList extends Component<App> {
-  
-  constructor(props: any){
-    super(props);
-    this.state = {
-      items: []
-    };
-    this.addItem = this.addItem.bind(this);
-  }
-
-  addItem() {
-    
-
-  }
-
-  render(){
-    return (
-      <IonPage className="body">
+export const ToDoList: React.FC<FormProps> = ({
+  onChange,
+  onAdd,
+  task
+}) => (
+  <IonPage className="body">
         <IonHeader>
           <IonToolbar>
             <IonTitle>To-Do List</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent>
-        <form onSubmit={this.addItem}>
+        <form onSubmit={onAdd} >
         <IonGrid>
            <IonRow>
             <IonCol size="auto">
               <IonItem>
               <IonLabel>Enter a Task:</IonLabel>
-              {/* <IonInput ref= { (a) => this.textInput = a}></IonInput> */}
+              <input onChange={onChange} value={task.name}/>
               </IonItem>
             </IonCol>
             <IonCol>
-            <IonButton type="submit">Add</IonButton>
+              <IonButton type="submit">Add</IonButton>
             </IonCol>
            </IonRow>
          </IonGrid>       
         </form>
         </IonContent>
       </IonPage>
-    );
-  }
-};
+)
+    
+      
+
 
 export default ToDoList;
