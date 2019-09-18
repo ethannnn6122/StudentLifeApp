@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -52,19 +52,18 @@ class App extends Component<{}, State> {
   render() {
     return(
       <IonApp>
-        <ToDoList 
+        {/* <ToDoList 
           task={this.state.newTask}
           onAdd={this.addTask}
           onChange={this.handleTaskChange}
-          />
+          /> */}
           <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} />
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/tab1" component={agendaTab} exact={true} />
           <Route path="/tab2" component={homeTab} exact={true} />
-          <Route path="/tab3" component={ToDoList} />
-          <Route exact path="/" render={() => <Redirect to="/tab2" />} />
+          <Route path="/tab3" render={() => <ToDoList task={this.state.newTask} onAdd={this.addTask} onChange={this.handleTaskChange}/>} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">

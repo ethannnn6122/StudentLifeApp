@@ -2,6 +2,7 @@ import React from "react";
 
 import { Task } from "../../models/task";
 import { TaskListItem } from "../Todo-Components/TasksListItem";
+import { IonList, IonPage } from "@ionic/react";
 
 export interface TaskListProps {
     tasks: Task[];
@@ -9,9 +10,12 @@ export interface TaskListProps {
 }
 
 export const TasksList: React.FC<TaskListProps> = ({tasks, onDelete }) => (
-    <ul>
-        {tasks.map(task => (
-            <TaskListItem task={task} onDelete={onDelete} />
+<IonPage className="body">
+    <IonList>
+        {tasks.map((task, i) => (
+            <TaskListItem task={task} onDelete={onDelete} key={i}/>
         ))}
-    </ul>
+    </IonList>
+</IonPage>
+    
 );

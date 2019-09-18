@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Task } from "../../models/task";
+import { IonItem } from "@ionic/react";
 
 export interface TasksListItemProps {
   task: Task;
@@ -13,8 +14,9 @@ export const TaskListItem: React.FC<TasksListItemProps> = ({ task, onDelete }) =
   };
 
   return (
-    <li>
+    
+    <IonItem>
       {task.name} <button onClick={onClick}>X</button>
-    </li>
+    </IonItem>
   );
 };

@@ -9,39 +9,41 @@ export interface FormProps {
   task: Task;
 }
 
-
 export const ToDoList: React.FC<FormProps> = ({
   onChange,
   onAdd,
   task
 }) => (
+  
+  
   <IonPage className="body">
         <IonHeader>
           <IonToolbar>
             <IonTitle>To-Do List</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent>
-        <form onSubmit={onAdd} >
+        <IonContent> 
         <IonGrid>
            <IonRow>
-            <IonCol size="auto">
-              <IonItem>
-              <IonLabel>Enter a Task:</IonLabel>
-              <input onChange={onChange} value={task.name}/>
+            <form onSubmit={onAdd}>
+              <IonCol size="auto">
+               <IonItem>
+                <IonLabel>Enter a Task:</IonLabel>
+                {console.log('LOG: '+JSON.stringify(task))}
+                <input onChange={onChange} value={task.name}/>
               </IonItem>
             </IonCol>
             <IonCol>
               <IonButton type="submit">Add</IonButton>
             </IonCol>
+                </form>
            </IonRow>
          </IonGrid>       
-        </form>
         </IonContent>
       </IonPage>
 )
-    
-      
+
+
 
 
 export default ToDoList;
