@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonHeader, IonToolbar, IonPage, IonTitle, IonContent, IonLabel, IonButton, IonGrid, IonRow, IonCol, IonItem } from '@ionic/react';
-import './to_do.css';
+import './pageCSS/to_do.css';
 import { Task } from '../models/task';
 
 export interface FormProps {
@@ -14,8 +14,6 @@ export const ToDoList: React.FC<FormProps> = ({
   onAdd,
   task
 }) => (
-  
-  
   <IonPage className="body">
         <IonHeader>
           <IonToolbar>
@@ -23,7 +21,7 @@ export const ToDoList: React.FC<FormProps> = ({
           </IonToolbar>
         </IonHeader>
         <IonContent> 
-        <IonGrid>
+          <IonGrid>
            <IonRow>
             <form onSubmit={onAdd}>
               <IonCol size="auto">
@@ -37,12 +35,12 @@ export const ToDoList: React.FC<FormProps> = ({
             </IonCol>
                 </form>
            </IonRow>
+           <IonRow>
+             Put stuff here
+           </IonRow>
          </IonGrid>       
         </IonContent>
       </IonPage>
 )
-
-
-
 
 export default ToDoList;

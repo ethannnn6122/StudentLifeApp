@@ -14,7 +14,6 @@ export const TaskListItem: React.FC<TasksListItemProps> = ({ task, onDelete }) =
   };
 
   return (
-    
     <IonItem>
       {task.name} <button onClick={onClick}>X</button>
     </IonItem>

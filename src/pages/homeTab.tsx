@@ -17,7 +17,7 @@ import {
 } from '@ionic/react';
 import { person, arrowDropright } from 'ionicons/icons';
 import React, { Component } from 'react';
-import './home.css';
+import './pageCSS/home.css';
 
 class homeTab extends Component{
   render(){

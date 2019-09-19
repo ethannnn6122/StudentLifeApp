@@ -7,7 +7,7 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { home, journal, checkboxOutline } from 'ionicons/icons';
@@ -52,7 +52,7 @@ class App extends Component<{}, State> {
   render() {
     return(
       <IonApp>
-          <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} />
+          
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
@@ -77,6 +77,7 @@ class App extends Component<{}, State> {
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
+    <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} />
   </IonApp>
     );
   }
