@@ -77,7 +77,6 @@ class App extends Component<{}, State> {
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
-    <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} />
   </IonApp>
     );
   }
