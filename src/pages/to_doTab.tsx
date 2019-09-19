@@ -29,7 +29,6 @@ export const ToDoList: React.FC<FormProps> = ({
               <IonCol size="auto">
                <IonItem>
                 <IonLabel>Enter a Task:</IonLabel>
-                {console.log('LOG: '+JSON.stringify(task))}
                 <input onChange={onChange} value={task.name}/>
               </IonItem>
             </IonCol>

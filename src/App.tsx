@@ -52,11 +52,6 @@ class App extends Component<{}, State> {
   render() {
     return(
       <IonApp>
-        {/* <ToDoList 
-          task={this.state.newTask}
-          onAdd={this.addTask}
-          onChange={this.handleTaskChange}
-          /> */}
           <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} />
     <IonReactRouter>
       <IonTabs>
@@ -64,6 +59,7 @@ class App extends Component<{}, State> {
           <Route path="/tab1" component={agendaTab} exact={true} />
           <Route path="/tab2" component={homeTab} exact={true} />
           <Route path="/tab3" render={() => <ToDoList task={this.state.newTask} onAdd={this.addTask} onChange={this.handleTaskChange}/>} />
+          <Route path="/" component={homeTab} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">
