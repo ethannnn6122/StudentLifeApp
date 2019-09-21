@@ -16,35 +16,55 @@ interface State {
 }
 
 
-class ToDoList extends Component<FormProps, ({onChange, onAdd, task})> {
-  <IonPage className="body">
-  <IonHeader>
-    <IonToolbar>
-      <IonTitle>To-Do List</IonTitle>
-    </IonToolbar>
-  </IonHeader>
-  <IonContent> 
-    <IonGrid>
-     <IonRow>
-      <form onSubmit={onAdd}>
-        <IonCol size="auto">
-         <IonItem>
-          <IonLabel>Enter a Task:</IonLabel>
-          <input onChange={onChange} value={task.name}/>
-        </IonItem>
-      </IonCol>
-      <IonCol>
-        <IonButton type="submit">Add</IonButton>
-      </IonCol>
-          </form>
-     </IonRow>
-     <IonRow>
-       Put stuff here
-       <TasksList tasks={state.tasks} onDelete={deleteTask} />
-     </IonRow>
-   </IonGrid>       
-  </IonContent>
-</IonPage>
-} 
+class ToDoList extends Component<FormProps, State>  {
+  state = {
+    newTask: {
+      id: 1,
+      name: ""
+    },
+    tasks: []
+  };
+  render(){
+    const { onChange, onAdd, task } = this.props;
+    return(
+      <IonPage className="body">
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>To-Do List</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent> 
+        <IonGrid>
+         <IonRow>
+          <form onSubmit={onAdd}>
+            <IonCol size="auto">
+             <IonItem>
+              <IonLabel>Enter a Task:</IonLabel>
+              <input onChange={onChange} value={task.name}/>
+            </IonItem>
+          </IonCol>
+          <IonCol>
+            <IonButton type="submit">Add</IonButton>
+          </IonCol>
+            </form>
+         </IonRow>
+         <IonRow>
+           Put stuff here
+           <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} /> 
+         </IonRow>
+       </IonGrid>       
+      </IonContent>
+    </IonPage>
+    );
+  }
+
+   private deleteTask = (taskToDelete: Task) => {
+      this.setState(previousState => ({
+        tasks: [
+          ...previousState.tasks.filter(task => task.id !== taskToDelete.id)
+        ]
+      }));
+    };
+  } 
 
 export default ToDoList;

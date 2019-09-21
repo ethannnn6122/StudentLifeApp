@@ -52,13 +52,12 @@ class App extends Component<{}, State> {
   render() {
     return(
       <IonApp>
-          
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/tab1" component={agendaTab} exact={true} />
           <Route path="/tab2" component={homeTab} exact={true} />
-          <Route path="/tab3" render={() => <ToDoList task={this.state.newTask} onAdd={this.addTask} onChange={this.handleTaskChange}/>} />
+          <Route path="/tab3" render={() => <ToDoList task={this.state.newTask} onAdd={this.addTask} onChange={this.handleTaskChange}/>}/>
           <Route path="/" component={homeTab} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
@@ -80,35 +79,27 @@ class App extends Component<{}, State> {
   </IonApp>
     );
   }
-
+  
   private addTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     this.setState(previousState => ({
       newTask: {
         id: previousState.newTask.id + 1,
-        name: ""
+       name: ""
       },
       tasks: [...previousState.tasks, previousState.newTask]
     }));
   };
 
-  private handleTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      newTask: {
-        ...this.state.newTask,
-        name: event.target.value
-      }
-    });
-  };
-
-  private deleteTask = (taskToDelete: Task) => {
-    this.setState(previousState => ({
-      tasks: [
-        ...previousState.tasks.filter(task => task.id !== taskToDelete.id)
-      ]
-    }));
-  };
+private handleTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  this.setState({
+    newTask: {
+      ...this.state.newTask,
+      name: event.target.value
+    }
+  });
+};
 }
 
 export default App;
