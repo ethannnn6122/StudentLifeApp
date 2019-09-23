@@ -36,6 +36,8 @@ import './theme/variables.css';
 import { Task } from './models/task';
 import { TasksList } from './pages/Todo-Components/TasksList';
 
+
+
 interface State {
   newTask: Task;
   tasks: Task[];
@@ -76,11 +78,13 @@ class App extends Component<{}, State> {
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
+        {console.log("APP:"+ JSON.stringify(this.state.tasks))}
+        <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} /> 
   </IonApp>
     );
   }
   
-  private addTask = (event: React.FormEvent<HTMLFormElement>) => {
+   addTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     this.setState(previousState => ({
@@ -92,7 +96,7 @@ class App extends Component<{}, State> {
     }));
   };
 
-private handleTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+ handleTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   this.setState({
     newTask: {
       ...this.state.newTask,
@@ -100,6 +104,16 @@ private handleTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     }
   });
 };
-}
+
+ deleteTask = (taskToDelete: Task) => {
+  this.setState(previousState => ({
+    tasks: [
+      ...previousState.tasks.filter(task => task.id !== taskToDelete.id)
+    ]
+  }));
+};
+
+} 
+
 
 export default App;

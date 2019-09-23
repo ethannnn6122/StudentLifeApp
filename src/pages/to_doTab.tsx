@@ -49,7 +49,7 @@ class ToDoList extends Component<FormProps, State>  {
             </form>
          </IonRow>
          <IonRow>
-           Put stuff here
+         {console.log("Task:"+ JSON.stringify(this.state.tasks))}
            <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} /> 
          </IonRow>
        </IonGrid>       
@@ -58,13 +58,13 @@ class ToDoList extends Component<FormProps, State>  {
     );
   }
 
-   private deleteTask = (taskToDelete: Task) => {
-      this.setState(previousState => ({
-        tasks: [
-          ...previousState.tasks.filter(task => task.id !== taskToDelete.id)
-        ]
-      }));
-    };
+  private deleteTask = (taskToDelete: Task) => {
+  this.setState(previousState => ({
+    tasks: [
+      ...previousState.tasks.filter(task => task.id !== taskToDelete.id)
+    ]
+  }));
+};
   } 
 
 export default ToDoList;
