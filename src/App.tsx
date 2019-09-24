@@ -38,10 +38,12 @@ import { TasksList } from './pages/Todo-Components/TasksList';
 
 
 
-interface State {
+export interface State {
   newTask: Task;
   tasks: Task[];
 }
+
+
 
 class App extends Component<{}, State> {
   state = {

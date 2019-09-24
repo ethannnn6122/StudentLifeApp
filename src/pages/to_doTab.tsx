@@ -3,6 +3,7 @@ import { IonHeader, IonToolbar, IonPage, IonTitle, IonContent, IonLabel, IonButt
 import './pageCSS/to_do.css';
 import { Task } from '../models/task';
 import { TasksList } from './Todo-Components/TasksList';
+import App, { State } from '../App'
 
 export interface FormProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -10,13 +11,8 @@ export interface FormProps {
   task: Task;
 }
 
-interface State {
-  newTask: Task;
-  tasks: Task[];
-}
 
-
-class ToDoList extends Component<FormProps, State>  {
+class ToDoList extends Component<FormProps, State, App["state"]>  {
   state = {
     newTask: {
       id: 1,
@@ -24,6 +20,7 @@ class ToDoList extends Component<FormProps, State>  {
     },
     tasks: []
   };
+  
   render(){
     const { onChange, onAdd, task } = this.props;
     return(
