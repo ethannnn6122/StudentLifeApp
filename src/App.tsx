@@ -34,7 +34,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import { Task } from './models/task';
-import { TasksList } from './pages/Todo-Components/TasksList';
+// import { TasksList } from './pages/Todo-Components/TasksList';
 
 
 
@@ -80,13 +80,11 @@ class App extends Component<{}, State> {
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
-        {console.log("APP:"+ JSON.stringify(this.state.tasks))}
-        <TasksList tasks={this.state.tasks} onDelete={this.deleteTask} /> 
   </IonApp>
     );
   }
   
-   addTask = (event: React.FormEvent<HTMLFormElement>) => {
+   private addTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     this.setState(previousState => ({
@@ -98,7 +96,7 @@ class App extends Component<{}, State> {
     }));
   };
 
- handleTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+ private handleTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
   this.setState({
     newTask: {
       ...this.state.newTask,
@@ -107,7 +105,7 @@ class App extends Component<{}, State> {
   });
 };
 
- deleteTask = (taskToDelete: Task) => {
+ private deleteTask = (taskToDelete: Task) => {
   this.setState(previousState => ({
     tasks: [
       ...previousState.tasks.filter(task => task.id !== taskToDelete.id)
